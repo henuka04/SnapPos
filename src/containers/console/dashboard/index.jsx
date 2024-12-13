@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Table, Input, Button, Popover, Typography, Badge } from "antd";
-import { SearchOutlined } from "@ant-design/icons";
+import { SearchOutlined, PlusOutlined } from "@ant-design/icons";
 import "./styles.css";
 
 const { Paragraph } = Typography;
@@ -85,6 +85,11 @@ class Dashboard extends Component {
     });
   };
 
+  handleAddCategory = () => {
+    console.log("Add Category button clicked");
+    // Add logic to handle adding a category
+  };
+
   render() {
     const columns = [
       {
@@ -130,17 +135,31 @@ class Dashboard extends Component {
     ];
 
     return (
-      <Table
-        className="dashboard-table"
-        columns={columns}
-        dataSource={this.state.data}
-        bordered
-        pagination={{
-          pageSize: 5,
-          className: "dashboard-pagination",
-        }}
-        scroll={{ x: 800 }}
-      />
+      <div>
+        {/* Add Category Button */}
+        <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: 16 }}>
+          <Button
+            type="primary"
+            icon={<PlusOutlined />}
+            onClick={this.handleAddCategory}
+          >
+            Add Category
+          </Button>
+        </div>
+
+        {/* Table */}
+        <Table
+          className="dashboard-table"
+          columns={columns}
+          dataSource={this.state.data}
+          bordered
+          pagination={{
+            pageSize: 5,
+            className: "dashboard-pagination",
+          }}
+          scroll={{ x: 800 }}
+        />
+      </div>
     );
   }
 }
